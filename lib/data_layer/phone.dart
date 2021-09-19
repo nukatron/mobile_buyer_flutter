@@ -8,6 +8,7 @@ class Phone {
   final double rating;
   String? description;
   String? brand;
+  bool isFavorite = false;
 
   Phone({
     required this.id,
@@ -17,6 +18,7 @@ class Phone {
     required this.rating,
     this.description,
     this.brand,
+    this.isFavorite = false
   });
 
   Phone.fromJson(json)

@@ -1,28 +1,28 @@
 
 
-import 'dart:async';
-
-import 'package:mobile_buyer_flutter/bloc/base_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_buyer_flutter/data_layer/api_services.dart';
 import 'package:mobile_buyer_flutter/data_layer/phone.dart';
 
-class PhoneBloc implements BaseBloc {
+class PhoneBloc extends Cubit<List<Phone>> {
 
   final _serviceApi = ApiServices();
-  final _controller = StreamController<List<Phone>>();
 
+  var _phones = <Phone>[];
+  List<Phone> get favorite => _phones;
 
-  //getter the stream
-  Stream<List<Phone>> get phoneStream => _controller.stream;
+  PhoneBloc() : super([]) {
+    fetchPhones();
+  }
 
   void fetchPhones() async {
-    final results = await _serviceApi.fetchPhoneList();
-    _controller.sink.add(results);
+    _phones = await _serviceApi.fetchPhoneList();
+   emit(List.from(_phones));
   }
 
-  @override
-  void dispose() {
-    _controller.close();
+  void toggleFavorite() {
+    emit(List.from(_phones));
   }
+
 
 }
