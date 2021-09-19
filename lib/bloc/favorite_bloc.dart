@@ -1,21 +1,18 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_buyer_flutter/bloc/phone_bloc_base.dart';
 import 'package:mobile_buyer_flutter/data_layer/phone.dart';
 
-class FavoriteBloc extends Cubit<List<Phone>> {
+class FavoriteBloc extends PhoneBlocBase {
 
-  final _favorites = <Phone>[];
-  List<Phone> get favorite => _favorites;
+  List<Phone> get favoriteList => phones;
 
   FavoriteBloc() : super([]);
 
   void toggleFavorite(Phone phone) {
-    if(_favorites.contains(phone)) {
-      _favorites.removeWhere((item) => item.id == phone.id);
+    if(phones.contains(phone)) {
+      phones.removeWhere((item) => item.id == phone.id);
     } else {
-      _favorites.add(phone);
+      phones.add(phone);
     }
-    emit(List.from(_favorites));
+    emitItem(withSort: true);
   }
-
-
 }

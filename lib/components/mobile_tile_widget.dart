@@ -15,10 +15,11 @@ class MobileTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = context.read<FavoriteBloc>().favorite.contains(phone);
+    bool isFavorite = context.read<FavoriteBloc>().favoriteList.contains(phone);
 
     return GestureDetector(
       child: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
@@ -65,14 +66,12 @@ class MobileTileWidget extends StatelessWidget {
               icon: Icon(
                 isFavorite ? Icons.star : Icons.star_border,
               ),
-              color: isFavorite
-                  ? Theme.of(context).colorScheme.secondary
-                  : Theme.of(context).colorScheme.onSurface,
+              color: kFavoriteColor,
               onPressed: () {
                 //inorder to save fav
                 context.read<FavoriteBloc>().toggleFavorite(phone);
                 //in order to refresh the fav button
-                context.read<PhoneBloc>().toggleFavorite();
+                context.read<PhoneBloc>().toggleUpdate();
                 // bloc.toggleRestaurant(restaurant),
               },
             )
