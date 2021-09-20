@@ -7,3 +7,6 @@ const kListTitleTextStyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bol
 const kListSubTitleTextStyle = TextStyle(fontSize: 10.0, color: Color(0xFF666666));
 const kListPriceTagTextStyle = TextStyle(fontSize: 10.0, color: Color(0xFF666666), fontWeight: FontWeight.bold,);
 const kDetailTextStyle = TextStyle(fontSize: 12.0, color: Color(0xFF808080));
+
+
+const kPrefKeyFavoriteList = "kPrefKeyFavoriteList";

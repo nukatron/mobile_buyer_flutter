@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_buyer_flutter/bloc/bloc_provider.dart';
 import 'package:mobile_buyer_flutter/bloc/favorite_bloc.dart';
 import 'package:mobile_buyer_flutter/bloc/phone_bloc.dart';
 import 'package:mobile_buyer_flutter/components/favorite_list_widget.dart';
@@ -33,8 +33,8 @@ class MainScreen extends StatelessWidget {
                 );
                 if(sortedBy != null) {
                   //in order to refresh the fav button
-                  context.read<PhoneBloc>().updateSortedList(sortedBy);
-                  context.read<FavoriteBloc>().updateSortedList(sortedBy);
+                  BlocProvider.of<PhoneBloc>(context).updateSortedList(sortedBy);
+                  BlocProvider.of<FavoriteBloc>(context).updateSortedList(sortedBy);
                 }
               },
             ),

@@ -6,9 +6,7 @@ class PhoneBloc extends PhoneBlocBase {
 
   final _serviceApi = ApiServices();
 
-  List<Phone> get phoneList => phones;
-
-  PhoneBloc() : super([]) {
+  PhoneBloc() {
     fetchPhones();
   }
 

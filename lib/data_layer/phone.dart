@@ -28,7 +28,19 @@ class Phone {
         thumbUrl = json['thumbImageURL'],
         description = json['description'],
         price = json['price'].toDouble(),
-        rating = json['rating'].toDouble();
+        rating = json['rating'].toDouble(),
+        isFavorite = json['isFavorite'] ?? false;
+
+  Map<String, dynamic> toJson() => {
+    'id' : id,
+    'name': name,
+    'brand': brand,
+    'thumbImageURL': thumbUrl,
+    'description': description,
+    'price': price,
+    'rating': rating,
+    'isFavorite': isFavorite
+  };
 
   String get priceDisplay {
     return "\$${price.toStringAsFixed(2)}";

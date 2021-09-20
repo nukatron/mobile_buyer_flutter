@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_buyer_flutter/bloc/bloc_provider.dart';
 import 'package:mobile_buyer_flutter/bloc/favorite_bloc.dart';
 import 'package:mobile_buyer_flutter/bloc/phone_bloc.dart';
 import 'package:mobile_buyer_flutter/screens/main_screen.dart';
@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => PhoneBloc(),),
-        BlocProvider(create: (_) => FavoriteBloc(),),
-      ],
-      child: const MaterialApp(
-        home: MainScreen(),
+    return BlocProvider<PhoneBloc>(
+      bloc: PhoneBloc(),
+      child: BlocProvider<FavoriteBloc>(
+        bloc: FavoriteBloc(),
+        child: const MaterialApp(
+          home: MainScreen(),
+        ),
       ),
     );
   }

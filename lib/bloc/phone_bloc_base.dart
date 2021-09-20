@@ -1,13 +1,17 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
+
+import 'package:mobile_buyer_flutter/bloc/bloc.dart';
 import 'package:mobile_buyer_flutter/data_layer/phone.dart';
 import 'package:mobile_buyer_flutter/data_layer/sort_type.dart';
+import 'package:rxdart/rxdart.dart';
 
-abstract class PhoneBlocBase extends Cubit<List<Phone>> {
+abstract class PhoneBlocBase extends Bloc {
 
   var _sortType = SortType.none;
   var phones = <Phone>[];
 
-  PhoneBlocBase(List<Phone> initialState) : super(initialState);
+  final _controller = BehaviorSubject<List<Phone>>();
+  Stream<List<Phone>> get phoneStream => _controller.stream;
 
   void updateSortedList(SortType sortType) {
     _sortType = sortType;
@@ -28,7 +32,12 @@ abstract class PhoneBlocBase extends Cubit<List<Phone>> {
         }
       });
     }
-    emit(List.from(phones));
+    _controller.sink.add(List.from(phones));
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
   }
 
 }
