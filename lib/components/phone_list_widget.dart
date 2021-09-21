@@ -11,20 +11,26 @@ class PhoneListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Phone>>(
-      stream: BlocProvider.of<PhoneBloc>(context).phoneStream,
-      builder: (context, snapshot) {
-        final phones = snapshot.data ?? <Phone>[];
-        return ListView.separated(
-          itemCount: phones.length,
-          separatorBuilder: (context, index) => const Divider(),
-          itemBuilder: (context, index) {
-            final phone = phones[index];
-            return MobileTileWidget(
-              phone: phone,
+        stream: BlocProvider.of<PhoneBloc>(context).phoneStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final phones = snapshot.data!;
+            return ListView.separated(
+              itemCount: phones.length,
+              separatorBuilder: (context, index) => const Divider(),
+              itemBuilder: (context, index) {
+                final phone = phones[index];
+                return MobileTileWidget(phone: phone);
+              },
             );
-          },
-        );
-      }
-    );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('${snapshot.error}'));
+          }
+
+          // By default, show a loading spinner.
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
   }
 }

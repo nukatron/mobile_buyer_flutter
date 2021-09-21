@@ -49,7 +49,7 @@ class Phone {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Phone && brand == other.brand && id == other.id;
+      other is Phone && id == other.id;
 
   @override
   int get hashCode => id.hashCode;

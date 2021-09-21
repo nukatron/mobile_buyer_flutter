@@ -5,6 +5,7 @@ import 'package:mobile_buyer_flutter/bloc/favorite_bloc.dart';
 import 'package:mobile_buyer_flutter/bloc/phone_bloc.dart';
 import 'package:mobile_buyer_flutter/components/favorite_list_widget.dart';
 import 'package:mobile_buyer_flutter/components/phone_list_widget.dart';
+import 'package:mobile_buyer_flutter/constants.dart';
 import 'package:mobile_buyer_flutter/data_layer/sort_type.dart';
 
 class MainScreen extends StatelessWidget {
@@ -26,9 +27,9 @@ class MainScreen extends StatelessWidget {
                     context: context,
                     title: 'Sort',
                     actions: [
-                      const AlertDialogAction(key: SortType.lowestPrice, label: "Price low to high"),
-                      const AlertDialogAction(key: SortType.highestPrice, label: "Price high to low"),
-                      const AlertDialogAction(key: SortType.rating, label: "Rating"),
+                      const AlertDialogAction(key: SortType.lowestPrice, label: kSortByLowestPrice),
+                      const AlertDialogAction(key: SortType.highestPrice, label: kSortByHighestPrice),
+                      const AlertDialogAction(key: SortType.rating, label: kSortByRating),
                     ],
                 );
                 if(sortedBy != null) {

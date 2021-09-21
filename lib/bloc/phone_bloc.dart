@@ -4,15 +4,20 @@ import 'package:mobile_buyer_flutter/data_layer/phone.dart';
 
 class PhoneBloc extends PhoneBlocBase {
 
-  final _serviceApi = ApiServices();
+  late ApiServices _serviceApi;
 
-  PhoneBloc() {
+  PhoneBloc(ApiServices apiServices) {
+    _serviceApi = apiServices;
     fetchPhones();
   }
 
   void fetchPhones() async {
-    phones = await _serviceApi.fetchPhoneList();
-    emitItem(withSort: true);
+    try {
+      phones = await _serviceApi.fetchPhoneList();
+      emitItem(withSort: true);
+    } catch (err) {
+      emitError(err as Exception);
+    }
   }
 
   void toggleUpdate() {

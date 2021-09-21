@@ -35,6 +35,10 @@ abstract class PhoneBlocBase extends Bloc {
     _controller.sink.add(List.from(phones));
   }
 
+  void emitError(Exception error) {
+    _controller.sink.addError(error);
+  }
+
   @override
   void dispose() {
     _controller.close();

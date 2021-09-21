@@ -10,3 +10,6 @@ const kDetailTextStyle = TextStyle(fontSize: 12.0, color: Color(0xFF808080));
 
 
 const kPrefKeyFavoriteList = "kPrefKeyFavoriteList";
+const kSortByLowestPrice = "Price low to high";
+const kSortByHighestPrice = "Price high to low";
+const kSortByRating = "Rating";
